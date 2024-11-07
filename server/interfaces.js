@@ -1,13 +1,15 @@
 const interfaces = {
-    interfaz1: [
+    interface1: [
         {
-            elemento1: "Interfaz 1",
+            element1 : 'Interfaz 1',
+            element2 : '<button class="change">Cambio</button>'
         }
     ],
 
-    interfaz2: [
+    interface2: [
         {
-            elemento1: "Interfaz 2",
+            element1: "Interfaz 2",
+            element2 : '<button class="change">Cambio</button>'
         }
     ]
 };
