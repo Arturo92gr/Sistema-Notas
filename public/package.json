@@ -1,0 +1,13 @@
+{
+    "name": "uiclient",
+    "version": "1.0.0",
+    "description": "UI client ",
+    "main": "index.html",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "server" : "docker run -dit --name my-apache-app -p 8080:80 -v //c/Users/Raúl/proyectos/notas/uiclient:/usr/local/apache2/htdocs/ httpd:2.4"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  

@@ -1,13 +1,18 @@
 {
-  "name": "nombre-del-proyecto",
+  "name": "uiserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Servidor UI para sistema de notas.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t notes/uiserver .",
+    "container" : "docker run --name uiserver -p 3000:3000 -d notes/uiserver"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1"
   }
 }
