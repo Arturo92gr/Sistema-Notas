@@ -8,7 +8,8 @@ Sistema de administración de notas con diferentes interfaces
 2. [Javascript en el servidor](#2-javascript-en-el-servidor)  
 3. [Html](#3-html)
 4. [Javascript en el cliente](#4-javascript-en-el-cliente)  
-	4.1 [Modules](#41-modules)
+	4.1 [Mapper](#41-mapper)  
+    4.2 [Modules](#42-modules)
 
 ## 1. Servidor Docker
 
@@ -86,18 +87,19 @@ Ejecución:
 **index.js** del servidor:
 
 ```javascript
-import { HttpFetch } from "./modules/HttpFetch.js";
+import express from 'express';
+import cors from 'cors';
+import { model1 } from './interfaces/model_1.js';
 
-const httpFetch = new HttpFetch('http://localhost:3000');
+const appUI = new express();
+appUI.use(cors());
 
-httpFetch.obtenerUI('', (datos) => {
-    const contenedor = document.getElementById("main_container");
-        
-    datos.panels.forEach(element => {
-        const div = document.createElement('div');
-        div.setAttribute('class', element.cssData);
-        contenedor.appendChild(div)
-    });
+appUI.get('/', (req, res) => {
+    res.send(model1);
+})
+
+appUI.listen(3000, ()=>{
+    console.log("UI Server running.")
 });
 ```
 
@@ -156,25 +158,41 @@ La parte de cliente tiene el siguiente **index.js**:
 
 ```javascript
 import { HttpFetch } from "./modules/HttpFetch.js";
+import { UIBuilder } from "./modules/UIBuilder.js";
+function hola(a){
+    console.log('Datos listos' + a)
+}
 
 const httpFetch = new HttpFetch('http://localhost:3000');
-
 httpFetch.obtenerUI('', (datos) => {
-    const contenedor = document.getElementById("main_container");
-    
-    datos.panels.forEach(element => {
-        const div = document.createElement('div');
-        div.setAttribute('class', element.cssData);
-        contenedor.appendChild(div)
-    });
+    UIBuilder.build(datos);
 });
+
 ```
 
-## 4.1 Modules
+## 4.1 Mapper
 
-El cliente cuenta con dos módulos, cada uno contiene una forma de conexión distinta.
+El cliente tiene un mapeador, para que si el código html sufre modificaciones se pueda adaptar.
 
-**Http.js**
+```javascript
+export const PanelMapper = (panel) => {
+    const div = document.createElement("div");
+    for (const key in panel) {
+        switch(key) {
+            case 'panelName': 
+                div.setAttribute("id",panel[key]);
+                break;
+        }
+    }
+    return div;
+};
+```
+
+## 4.2 Modules
+
+El cliente cuenta con tres módulos, dos para formas de conexión distinta y uno para construir los elementos html.
+
+**Http.js** (conexión)
 
 ```javascript
 export class Http {
@@ -187,7 +205,7 @@ export class Http {
 }
 ```
 
-**HttpFetch.js**
+**HttpFetch.js** (conexión)
 
 ```javascript
 import { Http } from "./Http.js";
@@ -208,5 +226,22 @@ export class HttpFetch extends Http {
             this.last_error = error;
         }
     )}
+}
+```
+
+**UIBuilder.js** (constructor)
+
+```javascript
+import { PanelMapper } from "../mapper/PanelMapper.js";
+
+export class UIBuilder {
+    static build(data) {
+        console.log(data.panels);
+        const contenedor = document.getElementById("main_container");
+        data.panels.forEach(element => {
+            const div = PanelMapper(element);
+            contenedor.appendChild(div);
+        });
+    }
 }
 ```
