@@ -103,7 +103,7 @@ httpFetch.obtenerUI('', (datos) => {
 
 Dentro hay otro directorio _interfaces_, done estará el archivo **model_1.js** con la estructura de datos a utilizar en formato json:
 
-```json
+```javascript
 export const model1 = {
     panels: [
         {
