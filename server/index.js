@@ -1,13 +1,14 @@
-import { HttpFetch } from "./modules/HttpFetch.js";
+import express from 'express';
+import cors from 'cors';
+import { model1 } from './interfaces/model_1.js';
 
-const httpFetch = new HttpFetch('http://localhost:3000');
+const appUI = new express();
+appUI.use(cors());
 
-httpFetch.obtenerUI('', (datos) => {
-    const contenedor = document.getElementById("main_container");
-    
-    datos.panels.forEach(element => {
-        const div = document.createElement('div');
-        div.setAttribute('class', element.cssData);
-        contenedor.appendChild(div)
-    });
+appUI.get('/', (req, res) => {
+    res.send(model1);
+})
+
+appUI.listen(3000, ()=>{
+    console.log("UI Server running.")
 });
