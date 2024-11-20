@@ -1,0 +1,25 @@
+Estructura básica del proyecto:
+
+
+public/
+    css/
+        styles.css
+        
+    ejemplo_index.html
+    index.html
+    js/
+        index.js
+        mapper/
+            PanelMapper.js
+        modules/
+            Http.js
+            HttpFetch.js
+            UIBuilder.js
+server/
+    Dockerfile        
+    index.js
+    interfaces/
+        ejemplo_model.js
+        model_1.js
+        sistema_paneles_notas.js     // Sistema de notas y boards con los que gestionar las notas. Si el resto de compañeros está de acuerdo se usará como modelo base.
+    package.json

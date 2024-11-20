@@ -8,12 +8,12 @@ export class HttpFetch extends Http {
                     (data) => {
                         callBackOnSuccess(data);
                     }
-                , (error) =>{
-                    this.last_error = error;
-                })
+                ).catch((error) => {
+                   console.log(error);
+                });
             }
-        , (error) =>{
-            this.last_error = error;
-        }
-    )}
+        ).catch((error) => {
+            console.log(error);
+        });
+    }
 }

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "docker build -t notes/uiserver .",
-    "container" : "docker run --name uiserver -p 3000:3000 -d notes/uiserver"
+    "container": "docker run --name uiserver -p 3000:3000 -d notes/uiserver"
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,69 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Montserrat;
+}
+
+/*---------------- Estructura básica --------------------*/
+
+#main_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+
+
+/*---------------- BOARDS --------------------*/
+
+
+#board-normal-section{
+background-color: aliceblue;
+display: flex;
+flex-direction: column;
+flex: 1;
+height: 100%;
+align-items: center;
+}
+
+
+#board-critical-section{
+    background-color: rgb(224, 144, 137);
+    display: flex;
+flex-direction: column;
+flex: 1;
+height: 100%;
+
+align-items: center;
+}
+
+
+/*---------------- NOTES --------------------*/
+.note-normal {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-critical {
+    background-color: #ffdddd;
+    border: 1px solid #ff8888;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { model1 } from './interfaces/model_1.js';
+import { model1 } from './interfaces/model1.js';
 
 const appUI = new express();
 appUI.use(cors());
